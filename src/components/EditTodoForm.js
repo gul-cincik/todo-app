@@ -1,9 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
+const EditTodoForm = ({editTodo, task}) => {
 
-function EditTodoForm() {
+    const [value, setValue] = useState(task.task);
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        editTodo(value, task.id);
+
+        setValue("");
+    }
   return (
-    <div>EditTodoForm</div>
+    <form className='TodoForm' onSubmit={handleSubmit}>
+        <input type ='text' className='todo-input' value={value}  placeholder='Görevi Güncelle' onChange={(e) => setValue(e.target.value)}/>
+        <button type='submit'className='todo-btn'>Güncelle</button>
+    </form>
   )
 }
 
 export default EditTodoForm;
+
